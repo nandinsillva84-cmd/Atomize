@@ -2,125 +2,19 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Atomize · Rede de Pensamentos</title>
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="theme-color" content="#8b1031">
-    <link rel="manifest" href=<link rel="manifest" href="manifest.json">
+    <link rel="manifest" href="manifest.json">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        :root {
-            --bg-header-top: #8b1031;
-            --bg-header-bottom: #690922;
-            --text-cyan: #58d3f7;
-            --card-white: #ffffff;
-            --card-yellow: #f8f1c8;
-            --nav-bg: #4a0014;
-            --gray-text: #888888;
-            --like-red: #ff2d55;
-            --active-tab: #a4ebf3;
-            --vip-gold: #ffd700;
-            --verified-blue: #1da1f2;
-        }
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Roboto', sans-serif; }
-        body { background: #111; display: flex; justify-content: center; align-items: center; height: 100vh; overflow: hidden; }
-        .app-container {
-            width: 100%; max-width: 450px; height: 100vh; max-height: 900px;
-            background: url('https://images.unsplash.com/photo-1448375240586-882707db888b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80') center/cover fixed;
-            position: relative; overflow: hidden; display: flex; flex-direction: column;
-            box-shadow: 0 0 30px rgba(0,0,0,0.8); border-radius: 20px;
-        }
-        @media (min-width: 768px) { .app-container { max-width: 480px; border-radius: 30px; } }
-        .top-header { background: linear-gradient(180deg, var(--bg-header-top) 0%, var(--bg-header-bottom) 100%); padding: 20px 15px 10px 15px; display: flex; justify-content: space-between; align-items: flex-start; color: #fff; z-index: 10; }
-        .header-content { display: flex; gap: 15px; cursor: pointer; align-items: center; }
-        .main-avatar { width: 60px; height: 60px; border-radius: 50%; object-fit: cover; box-shadow: 0 2px 10px rgba(0,0,0,0.3); transition: border 0.3s; }
-        .header-info { display: flex; flex-direction: column; justify-content: center; }
-        .header-name { font-size: 19px; font-weight: 500; margin-bottom: 4px; display: flex; align-items: center; gap: 5px; flex-wrap: wrap; }
-        .header-status { font-size: 13px; color: var(--text-cyan); margin-bottom: 4px; }
-        .header-quote { font-size: 13px; color: #e0e0e0; }
-        .fullscreen-btn, .search-btn { width: 32px; height: 32px; background: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--bg-header-top); font-size: 16px; cursor: pointer; border: none; }
-        .fullscreen-btn { margin-right: 5px; }
-        .tabs { background: var(--bg-header-bottom); display: flex; justify-content: space-around; align-items: center; padding: 15px 0 0 0; z-index: 10; }
-        .tab { color: #dfb2bc; font-size: 15px; font-weight: 400; text-align: center; padding-bottom: 10px; position: relative; cursor: pointer; transition: 0.3s; }
-        .tab.active { color: transparent; -webkit-text-stroke: 1px var(--active-tab); font-size: 26px; font-weight: 300; text-shadow: 0 0 8px rgba(164,235,243,0.4); letter-spacing: 1px; top: -5px; }
-        .tab.active::after { content: ''; position: absolute; bottom: 2px; left: 10%; width: 80%; height: 2px; background: #fff; box-shadow: 0 0 5px #fff; }
-        .feed { flex: 1; overflow-y: auto; padding: 0 0 80px 0; display: flex; flex-direction: column; scroll-behavior: smooth; }
-        .feed::-webkit-scrollbar { display: none; }
-        .carousel-section { position: sticky; top: 0; z-index: 5; background: rgba(0,0,0,0.3); backdrop-filter: blur(5px); padding: 10px 15px; margin-bottom: 5px; }
-        .carousel-container { position: relative; width: 100%; height: 120px; overflow: hidden; border-radius: 16px; background: rgba(255,255,255,0.1); }
-        .carousel-track { display: flex; transition: transform 0.5s ease; height: 100%; }
-        .carousel-slide { min-width: 100%; height: 100%; display: flex; align-items: center; padding: 10px; background: linear-gradient(135deg, rgba(139,16,49,0.8) 0%, rgba(105,9,34,0.8) 100%); border-radius: 16px; color: #fff; cursor: pointer; }
-        .carousel-slide img { width: 60px; height: 60px; border-radius: 50%; object-fit: cover; margin-right: 15px; border: 2px solid #fff; }
-        .carousel-text { flex: 1; }
-        .carousel-text h4 { font-size: 16px; margin-bottom: 4px; }
-        .carousel-text p { font-size: 13px; opacity: 0.9; }
-        .carousel-indicators { display: flex; justify-content: center; margin-top: 8px; gap: 5px; }
-        .carousel-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.4); cursor: pointer; }
-        .carousel-dot.active { background: #fff; transform: scale(1.2); }
-        .cards-wrapper { padding: 0 15px; display: flex; flex-direction: column; gap: 12px; }
-        .card { background: var(--card-white); border-radius: 24px; padding: 16px; box-shadow: 0 4px 15px rgba(0,0,0,0.15); animation: fadeIn 0.4s ease; position: relative; }
-        .card.yellow { background: var(--card-yellow); }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        .card-top { display: flex; gap: 12px; }
-        .card-avatar { width: 55px; height: 55px; border-radius: 50%; object-fit: cover; }
-        .card-content { flex: 1; }
-        .card-name { font-size: 16px; font-weight: 500; color: #222; cursor: pointer; }
-        .card-quote { font-size: 14px; color: #111; }
-        .card-footer { display: flex; align-items: center; margin-top: 15px; }
-        .card-time { font-size: 12px; color: var(--gray-text); padding-right: 10px; }
-        .card-line { flex: 1; height: 1px; background: #eaeaea; }
-        .card-interactions { display: flex; gap: 15px; padding-left: 10px; }
-        .interaction { font-size: 12px; color: var(--gray-text); cursor: pointer; }
-        .interaction i { font-size: 14px; }
-        .bottom-nav { position: absolute; bottom: 0; width: 100%; background: var(--nav-bg); height: 60px; display: flex; justify-content: space-between; align-items: center; padding: 0 25px; z-index: 20; }
-        .nav-item { color: rgba(255,255,255,0.7); font-size: 22px; cursor: pointer; position: relative; }
-        .nav-plus { width: 56px; height: 56px; border-radius: 50%; background: linear-gradient(135deg, var(--bg-header-top), var(--text-cyan)); display: flex; align-items: center; justify-content: center; font-size: 26px; color: #fff; transform: translateY(-20px); cursor: pointer; }
-        .badge { position: absolute; top: -6px; right: -6px; background: #ff2d55; color: #fff; border-radius: 10px; padding: 2px 6px; font-size: 11px; font-weight: bold; display: none; }
-        .badge.show { display: inline-block; }
-        .app-modal { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: #f5f5f5; z-index: 100; transform: translateY(100%); transition: transform 0.35s; display: flex; flex-direction: column; }
-        .app-modal.active { transform: translateY(0); }
-        .modal-header { background: var(--bg-header-top); color: #fff; padding: 20px 15px; display: flex; align-items: center; gap: 15px; font-size: 18px; font-weight: 500; }
-        .modal-close { font-size: 20px; cursor: pointer; }
-        .modal-body { flex: 1; padding: 20px; overflow-y: auto; background: #f5f5f5; }
-        .btn-primary { background: var(--bg-header-top); color: #fff; border: none; padding: 15px; border-radius: 12px; font-size: 16px; font-weight: 500; width: 100%; cursor: pointer; }
-        .input-field { width: 100%; padding: 15px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 12px; font-size: 16px; background: #fff; }
-        .login-tabs { display: flex; margin-bottom: 20px; }
-        .login-tab { flex: 1; text-align: center; padding: 12px; background: #e0e0e0; color: #555; font-weight: 500; cursor: pointer; border-radius: 12px 12px 0 0; transition: 0.2s; }
-        .login-tab.active { background: #fff; color: var(--bg-header-top); box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-        .login-form { background: #fff; padding: 20px; border-radius: 0 12px 12px 12px; display: none; }
-        .login-form.active { display: block; }
-        .publisher-toolbar { display: flex; gap: 10px; margin-bottom: 15px; flex-wrap: wrap; }
-        .publisher-tool { background: #fff; border: 1px solid #ddd; border-radius: 10px; padding: 10px 14px; font-size: 14px; cursor: pointer; display: flex; align-items: center; gap: 6px; }
-        .publisher-tool:active { background: #f0f0f0; }
-        .emoji-picker { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 15px; background: #fff; padding: 10px; border-radius: 12px; }
-        .emoji-btn { font-size: 24px; cursor: pointer; padding: 5px; border-radius: 8px; border: none; background: none; }
-        .media-preview { margin-bottom: 15px; border-radius: 12px; overflow: hidden; max-height: 200px; background: #fff; position: relative; display: none; }
-        .media-preview img, .media-preview video { width: 100%; max-height: 200px; object-fit: cover; }
-        .remove-media { position: absolute; top: 8px; right: 8px; background: rgba(0,0,0,0.6); color: #fff; border: none; width: 28px; height: 28px; border-radius: 50%; font-size: 14px; cursor: pointer; }
-        .chat-area { display: flex; flex-direction: column; gap: 10px; flex: 1; padding: 20px; }
-        .msg-bubble { max-width: 80%; padding: 10px 14px; border-radius: 18px; font-size: 14px; position: relative; word-wrap: break-word; }
-        .msg-sent { background: #dcf8c6; align-self: flex-end; }
-        .msg-received { background: #fff; align-self: flex-start; }
-        .msg-delete { position: absolute; top: -6px; right: -6px; background: rgba(0,0,0,0.5); color: #fff; border: none; border-radius: 50%; width: 20px; height: 20px; font-size: 12px; display: none; cursor: pointer; }
-        .msg-bubble:hover .msg-delete { display: flex; align-items: center; justify-content: center; }
-        .toast { position: absolute; bottom: 80px; left: 50%; transform: translateX(-50%); background: rgba(0,0,0,0.8); color: #fff; padding: 10px 20px; border-radius: 20px; font-size: 14px; opacity: 0; transition: 0.3s; z-index: 1000; white-space: nowrap; }
-        .toast.show { opacity: 1; }
-        .menu-item { display: flex; align-items: center; gap: 15px; padding: 18px; background: #fff; border-radius: 16px; margin-bottom: 8px; font-size: 16px; cursor: pointer; }
-        .contact-item { display: flex; align-items: center; gap: 12px; padding: 15px; background: #fff; border-radius: 16px; margin-bottom: 8px; cursor: pointer; }
-        .contact-avatar { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; }
-        .admin-tabs { display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
-        .admin-tab { background: #252525; color: #ccc; border: none; padding: 12px 20px; border-radius: 12px; cursor: pointer; }
-        .admin-tab.active { background: var(--bg-header-top); color: #fff; }
-        .vip-badge { background: var(--vip-gold); color: #000; padding: 2px 8px; border-radius: 10px; font-size: 11px; font-weight: bold; }
-        .verified-badge { color: var(--verified-blue); font-size: 16px; }
-        .avatar-upload-label { cursor: pointer; display: inline-block; }
-        .avatar-upload-label img { width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 2px solid var(--bg-header-top); }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div class="app-container" id="appContainer">
+<div class="app-container safe-bottom" id="appContainer">
+    <!-- Cabeçalho (sem botão fullscreen) -->
     <header class="top-header" onclick="openProfileModal()">
         <div class="header-content">
             <img id="mainAvatar" src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80" alt="Avatar" class="main-avatar">
@@ -130,35 +24,41 @@
                 <div class="header-quote" id="mainQuote"><span class="time">Agora:</span> "..."</div>
             </div>
         </div>
-        <div style="display:flex; gap:5px;">
-            <button class="fullscreen-btn" onclick="toggleFullscreen()" title="Tela cheia"><i class="fas fa-expand" id="fullscreenIcon"></i></button>
-            <button class="search-btn" onclick="event.stopPropagation(); openExploreModal()"><i class="fas fa-search"></i></button>
-        </div>
+        <button class="search-btn" onclick="event.stopPropagation(); openExploreModal()"><i class="fas fa-search"></i></button>
     </header>
 
+    <!-- Abas -->
     <nav class="tabs">
-        <div class="tab active" onclick="filterFeed('all', this)">NOW</div>
-        <div class="tab" onclick="filterFeed('text', this)">Textz</div>
-        <div class="tab" onclick="filterFeed('fixed', this)">Fixados</div>
+        <div class="tab active" onclick="switchTab('feed', this)">NOW</div>
+        <div class="tab" onclick="switchTab('chats', this)">Textz</div>
+        <div class="tab" onclick="switchTab('fixed', this)">Fixados</div>
     </nav>
 
-    <main class="feed" id="feed">
+    <!-- Conteúdo principal -->
+    <main class="feed" id="feed" style="height: calc(100% - 140px);">
         <div class="carousel-section" id="carouselSection">
             <div class="carousel-container"><div class="carousel-track" id="carouselTrack"></div></div>
             <div class="carousel-indicators" id="carouselIndicators"></div>
         </div>
-        <div class="cards-wrapper" id="cardsWrapper"></div>
+        <!-- Amigos online (logo abaixo do carrossel) -->
+        <div id="onlineFriends" style="display:flex; gap:10px; padding:10px 15px; overflow-x:auto; background:rgba(0,0,0,0.2); border-radius:12px; margin:5px 15px;"></div>
+        <!-- Feed de posts -->
+        <div id="postsWrapper" class="cards-wrapper" style="padding:15px;"></div>
+        <!-- Lista de conversas (Textz) -->
+        <div id="chatsWrapper" class="chat-list" style="display:none;"></div>
     </main>
 
-    <footer class="bottom-nav">
-        <div class="nav-item" onclick="openContactsModal()"><i class="fas fa-address-book"></i><span class="badge" id="unreadBadge">0</span></div>
-        <div class="nav-item" onclick="openMenuModal()"><i class="fas fa-bars"></i><span class="badge" id="friendRequestBadge">0</span></div>
+    <!-- Barra inferior -->
+    <footer class="bottom-nav safe-bottom">
+        <div class="nav-item" onclick="openContactsModal()"><i class="fas fa-address-book"></i></div>
+        <div class="nav-item" onclick="openMenuModal()"><i class="fas fa-bars"></i></div>
         <div class="nav-plus" onclick="openModal('postModal')"><i class="fas fa-plus"></i></div>
         <div class="nav-item" onclick="openProfileModal()"><i class="fas fa-user"></i></div>
         <div class="nav-item" id="adminNavItem" style="display:none;" onclick="openModal('adminModal')"><i class="fas fa-crown" style="color:gold;"></i></div>
     </footer>
 
-    <!-- LOGIN -->
+    <!-- ==================== MODAIS ==================== -->
+    <!-- Login -->
     <div id="loginModal" class="app-modal active">
         <div class="modal-header"><span>🔐 Atomize</span></div>
         <div class="modal-body" style="background:#f0f0f0; padding:0;">
@@ -183,7 +83,7 @@
         </div>
     </div>
 
-    <!-- PUBLICADOR -->
+    <!-- Publicador -->
     <div id="postModal" class="app-modal">
         <div class="modal-header"><i class="fas fa-arrow-left modal-close" onclick="closeModal('postModal')"></i><span>Criar Publicação</span></div>
         <div class="modal-body">
@@ -204,37 +104,60 @@
             <input type="file" id="postImageInput" accept="image/*" style="display:none;" onchange="handlePostImageUpload(event)">
             <input type="text" id="videoUrlInput" placeholder="Cole a URL do vídeo" style="display:none;" onchange="handleVideoUrl(this.value)">
             <input type="text" id="locationInput" class="input-field" placeholder="📍 Marcar cidade">
-            <button class="btn-primary" onclick="publishPost()">📨 Publicar Agora</button>
+            <button class="btn-primary" onclick="publishPost()">📨 Publicar Agora (+10 moedas)</button>
         </div>
     </div>
 
-    <!-- CHAT -->
-    <div id="chatModal" class="app-modal" data-other-user-id="">
-        <div class="modal-header">
-            <i class="fas fa-arrow-left modal-close" onclick="closeModal('chatModal')"></i>
-            <span id="chatUserName">Contato</span>
-            <button onclick="clearChatHistory()" style="margin-left:auto;background:none;border:none;color:#ccc;font-size:16px;"><i class="fas fa-trash-alt"></i></button>
+    <!-- Chat (tela cheia) -->
+    <div id="chatModal" class="chat-modal">
+        <div class="chat-header">
+            <i class="fas fa-arrow-left chat-header-back" onclick="closeChat()"></i>
+            <img id="chatAvatar" src="" class="chat-header-avatar">
+            <span id="chatName" class="chat-header-name">Contato</span>
         </div>
-        <div class="chat-area" id="chatArea"></div>
-        <div style="display:flex;gap:10px;padding:10px;background:#fff;border-top:1px solid #ddd;">
-            <input type="text" id="chatMsgInput" style="flex:1;border-radius:20px;padding:12px;" placeholder="Digite uma mensagem...">
-            <button onclick="sendChatMsg()" style="background:var(--text-cyan);color:#fff;border:none;width:40px;height:40px;border-radius:50%;"><i class="fas fa-paper-plane"></i></button>
+        <div class="chat-messages" id="chatMessages"></div>
+        <div class="chat-input-area">
+            <input type="text" id="chatMsgInput" class="chat-input" placeholder="Digite uma mensagem...">
+            <button class="chat-send-btn" onclick="sendChatMessage()"><i class="fas fa-paper-plane"></i></button>
         </div>
     </div>
 
-    <!-- CONTATOS -->
+    <!-- Chat em grupo -->
+    <div id="groupChatModal" class="chat-modal">
+        <div class="chat-header">
+            <i class="fas fa-arrow-left chat-header-back" onclick="closeModal('groupChatModal')"></i>
+            <span id="groupChatName">Grupo</span>
+        </div>
+        <div class="chat-messages" id="groupChatArea"></div>
+        <div class="chat-input-area">
+            <input type="text" id="groupChatMsgInput" class="chat-input" placeholder="Mensagem...">
+            <button class="chat-send-btn" onclick="sendGroupChatMsg()"><i class="fas fa-paper-plane"></i></button>
+        </div>
+    </div>
+
+    <!-- Criar grupo -->
+    <div id="createGroupModal" class="app-modal">
+        <div class="modal-header"><i class="fas fa-arrow-left modal-close" onclick="closeModal('createGroupModal')"></i><span>Criar Grupo</span></div>
+        <div class="modal-body">
+            <input type="text" id="groupNameInput" class="input-field" placeholder="Nome do grupo">
+            <div id="friendsChecklist"></div>
+            <button class="btn-primary" onclick="createGroup()">Criar</button>
+        </div>
+    </div>
+
+    <!-- Contatos -->
     <div id="contactsModal" class="app-modal">
-        <div class="modal-header"><i class="fas fa-arrow-left modal-close" onclick="closeModal('contactsModal')"></i><span>Meus Amigos</span></div>
+        <div class="modal-header"><i class="fas fa-arrow-left modal-close" onclick="closeModal('contactsModal')"></i><span>Amigos e Grupos</span></div>
         <div class="modal-body" id="contactsList"></div>
     </div>
 
-    <!-- PERFIL PRÓPRIO -->
+    <!-- Perfil próprio -->
     <div id="profileModal" class="app-modal">
         <div class="modal-header"><i class="fas fa-arrow-left modal-close" onclick="closeModal('profileModal')"></i><span>Meu Perfil</span></div>
         <div class="modal-body">
             <div style="text-align:center;margin-bottom:20px;">
                 <label class="avatar-upload-label" for="profileAvatarUpload">
-                    <img id="profileAvatarPreview" src="" style="width:100px;height:100px;border-radius:50%;object-fit:cover;box-shadow:0 4px 15px rgba(0,0,0,0.2);">
+                    <img id="profileAvatarPreview" src="" style="width:100px;height:100px;border-radius:50%;object-fit:cover;">
                 </label>
                 <input type="file" id="profileAvatarUpload" accept="image/*" style="display:none;" onchange="handleProfileAvatarUpload(event)">
             </div>
@@ -242,14 +165,25 @@
             <input type="text" id="editLastName" class="input-field" placeholder="Sobrenome">
             <input type="text" id="editStatus" class="input-field" placeholder="Status">
             <input type="text" id="editQuote" class="input-field" placeholder="Frase">
-            <input type="password" id="editPassword" class="input-field" placeholder="Nova senha (deixe em branco)">
+            <div id="vipCustomization" style="display:none;">
+                <h4>✨ Personalização VIP</h4>
+                <label>Cor da moldura:</label>
+                <input type="color" id="editFrameColor" class="input-field" value="#ffd700">
+                <label>Fundo do chat:</label>
+                <input type="file" id="editChatBgFile" accept="image/*" class="input-field">
+                <label>Fundo do app:</label>
+                <input type="file" id="editAppBgFile" accept="image/*" class="input-field">
+            </div>
+            <input type="password" id="editPassword" class="input-field" placeholder="Nova senha">
             <input type="password" id="editPasswordConfirm" class="input-field" placeholder="Confirmar senha">
+            <p>💰 Moedas: <span id="coinsDisplay" class="coins-display">0</span></p>
+            <button id="vipBuyBtn" class="btn-primary" onclick="buyVipWithCoins()" style="display:none;">💎 Comprar 7 dias de VIP (200 moedas)</button>
             <button class="btn-primary" onclick="saveProfile()">Salvar</button>
-            <button class="btn-outline" onclick="logoutUser()" style="background:transparent; color:var(--bg-header-top); border:2px solid var(--bg-header-top); padding:13px; border-radius:12px; width:100%; margin-top:10px; cursor:pointer;">Sair da Conta</button>
+            <button class="btn-outline" onclick="logoutUser()">Sair</button>
         </div>
     </div>
 
-    <!-- PERFIL DE OUTRO -->
+    <!-- Perfil de outro usuário -->
     <div id="userProfileModal" class="app-modal">
         <div class="modal-header"><i class="fas fa-arrow-left modal-close" onclick="closeModal('userProfileModal')"></i><span>Perfil</span></div>
         <div class="modal-body" style="text-align:center;">
@@ -261,25 +195,25 @@
         </div>
     </div>
 
-    <!-- SOLICITAÇÕES -->
+    <!-- Solicitações de amizade -->
     <div id="friendRequestsModal" class="app-modal">
-        <div class="modal-header"><i class="fas fa-arrow-left modal-close" onclick="closeModal('friendRequestsModal')"></i><span>Solicitações de Amizade</span></div>
+        <div class="modal-header"><i class="fas fa-arrow-left modal-close" onclick="closeModal('friendRequestsModal')"></i><span>Solicitações</span></div>
         <div class="modal-body" id="friendRequestsList"></div>
     </div>
 
-    <!-- MENU -->
+    <!-- Menu -->
     <div id="menuModal" class="app-modal">
         <div class="modal-header"><i class="fas fa-arrow-left modal-close" onclick="closeModal('menuModal')"></i><span>Menu</span></div>
         <div class="modal-body">
             <div class="menu-item" onclick="closeModal('menuModal'); openProfileModal();"><i class="fas fa-user-edit"></i> Meu Perfil</div>
             <div class="menu-item" onclick="closeModal('menuModal'); openContactsModal();"><i class="fas fa-address-book"></i> Amigos</div>
-            <div class="menu-item" onclick="closeModal('menuModal'); openFriendRequestsModal();"><i class="fas fa-user-plus"></i> Solicitações <span id="menuRequestCount" style="color:red;"></span></div>
+            <div class="menu-item" onclick="closeModal('menuModal'); openFriendRequestsModal();"><i class="fas fa-user-plus"></i> Solicitações</div>
             <div class="menu-item" onclick="closeModal('menuModal'); openModal('novidadesModal');"><i class="fas fa-rocket"></i> Novidades</div>
             <div class="menu-item" onclick="logoutUser(); closeModal('menuModal');"><i class="fas fa-sign-out-alt"></i> Sair</div>
         </div>
     </div>
 
-    <!-- NOVIDADES -->
+    <!-- Novidades -->
     <div id="novidadesModal" class="app-modal">
         <div class="modal-header"><i class="fas fa-arrow-left modal-close" onclick="closeModal('novidadesModal')"></i><span>🚀 Próximas Atualizações</span></div>
         <div class="modal-body">
@@ -293,12 +227,12 @@
         </div>
     </div>
 
-    <!-- PAINEL ADMIN -->
+    <!-- Painel Admin -->
     <div id="adminModal" class="app-modal">
         <div class="modal-header">
             <i class="fas fa-arrow-left modal-close" onclick="closeModal('adminModal')"></i>
             <span>👑 Painel Admin</span>
-            <button onclick="closeModal('adminModal')" style="margin-left:auto;background:none;border:none;color:#fff;font-size:18px;"><i class="fas fa-sign-out-alt"></i></button>
+            <button onclick="closeModal('adminModal')" style="margin-left:auto;background:none;border:none;color:#fff;"><i class="fas fa-sign-out-alt"></i></button>
         </div>
         <div class="modal-body">
             <div class="admin-tabs">
@@ -306,750 +240,24 @@
                 <button class="admin-tab" onclick="switchAdminTab('posts')">📝 Posts</button>
                 <button class="admin-tab" onclick="switchAdminTab('chats')">💬 Chats</button>
                 <button class="admin-tab" onclick="switchAdminTab('turbinate')">✨ Turbinar</button>
-                <button class="admin-tab" onclick="window.open('https://console.firebase.google.com/project/chatbox-f7578/firestore/rules')">🔧 Regras</button>
+                <button class="admin-tab" onclick="switchAdminTab('dev')">🛠️ Dev</button>
             </div>
             <div id="adminContent"></div>
         </div>
     </div>
 
+    <!-- Toast de notificação -->
     <div id="toast" class="toast">Mensagem</div>
+
+    <!-- Áudio para notificações -->
+    <audio id="notificationSound" src="https://www.soundjay.com/buttons/sounds/button-09.mp3" preload="auto"></audio>
 </div>
 
 <!-- Firebase SDKs -->
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
-
-<script>
-    // Configuração Firebase
-    const firebaseConfig = {
-        apiKey: "AIzaSyAApYxcRCdKCa5X4B5Mqe_tCVafjTbU6bM",
-        authDomain: "chatbox-f7578.firebaseapp.com",
-        projectId: "chatbox-f7578",
-        storageBucket: "chatbox-f7578.firebasestorage.app",
-        messagingSenderId: "136199002752",
-        appId: "1:136199002752:web:e36cbea04d75877eb0e465"
-    };
-    firebase.initializeApp(firebaseConfig);
-    const auth = firebase.auth();
-    const db = firebase.firestore();
-
-    // Estado global
-    let currentUser = null;
-    let currentUid = null;
-    let postsListener = null;
-    let profileListener = null;
-    let currentFilter = 'all';
-    let chatsListeners = {};
-    let carouselInterval = null;
-    let currentCarouselIndex = 0;
-    let viewedUid = null;
-    let currentMediaData = null;
-
-    // Helpers
-    function showToast(msg) {
-        const t = document.getElementById('toast'); t.textContent = msg; t.classList.add('show');
-        clearTimeout(window._toastTimer); window._toastTimer = setTimeout(() => t.classList.remove('show'), 2500);
-    }
-    function openModal(id) { document.getElementById(id).classList.add('active'); }
-    function closeModal(id) { document.getElementById(id).classList.remove('active'); }
-    function closeAllModals() { document.querySelectorAll('.app-modal').forEach(m => m.classList.remove('active')); }
-
-    // ========== LOGIN ==========
-    function switchLoginTab(tab) {
-        document.querySelectorAll('.login-tab').forEach(t => t.classList.remove('active'));
-        if (tab === 'login') {
-            document.querySelectorAll('.login-tab')[0].classList.add('active');
-            document.getElementById('loginForm').classList.add('active');
-            document.getElementById('registerForm').classList.remove('active');
-        } else {
-            document.querySelectorAll('.login-tab')[1].classList.add('active');
-            document.getElementById('registerForm').classList.add('active');
-            document.getElementById('loginForm').classList.remove('active');
-        }
-    }
-
-    async function registerEmail() {
-        const firstName = document.getElementById('regFirstName').value.trim();
-        const lastName = document.getElementById('regLastName').value.trim();
-        const email = document.getElementById('regEmail').value.trim();
-        const password = document.getElementById('regPassword').value.trim();
-        if (!firstName || !lastName || !email || !password) return showToast('Preencha todos os campos.');
-        if (password.length < 6) return showToast('Senha mínima de 6 caracteres.');
-        try {
-            const cred = await auth.createUserWithEmailAndPassword(email, password);
-            const fullName = `${firstName} ${lastName}`;
-            await db.collection('users').doc(cred.user.uid).set({
-                firstName, lastName, name: fullName, email, password,
-                avatar: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80',
-                status: 'acabou de entrar', quote: '"Compartilhando pensamentos..."',
-                friends: [], lastRead: {},
-                isVIP: false, isVerified: false,
-                hasCrown: false, crownColor: '#ffd700', frameColor: null, frameStyle: 'solid',
-                chatBackground: null, appBackground: null
-            });
-            showToast(`Conta criada! Bem-vindo(a), ${fullName}!`);
-        } catch (err) {
-            if (err.code === 'auth/email-already-in-use') showToast('E‑mail já cadastrado.');
-            else showToast('Erro: ' + err.message);
-        }
-    }
-
-    async function loginEmail() {
-        const email = document.getElementById('loginEmail').value.trim();
-        const password = document.getElementById('loginPassword').value.trim();
-        if (!email || !password) return showToast('Preencha e‑mail e senha.');
-        try {
-            await auth.signInWithEmailAndPassword(email, password);
-        } catch (err) {
-            if (err.code === 'auth/wrong-password') showToast('Senha incorreta.');
-            else if (err.code === 'auth/user-not-found') showToast('E‑mail não cadastrado.');
-            else showToast('Erro: ' + err.message);
-        }
-    }
-
-    function logoutUser() {
-        auth.signOut();
-        closeAllModals();
-        if (postsListener) postsListener();
-        if (profileListener) profileListener();
-        Object.values(chatsListeners).forEach(u => u());
-        document.getElementById('loginModal').classList.add('active');
-        applyUserToHeader(null);
-        showToast('Você saiu.');
-    }
-
-    // ========== OBSERVADOR DE AUTENTICAÇÃO ==========
-    auth.onAuthStateChanged(async (user) => {
-        if (user) {
-            currentUid = user.uid;
-            const ref = db.collection('users').doc(user.uid);
-            const snap = await ref.get();
-            if (!snap.exists) {
-                await auth.signOut();
-                return showToast('Usuário não encontrado. Faça o cadastro.');
-            }
-            currentUser = snap.data();
-            applyUserToHeader(currentUser);
-            document.getElementById('loginModal').classList.remove('active');
-            if (currentUser.email === 'nandinsillva84@gmail.com') {
-                document.getElementById('adminNavItem').style.display = 'block';
-            } else {
-                document.getElementById('adminNavItem').style.display = 'none';
-            }
-            initApp();
-        } else {
-            currentUid = null; currentUser = null;
-            document.getElementById('loginModal').classList.add('active');
-            applyUserToHeader(null);
-            if (postsListener) postsListener();
-            if (profileListener) profileListener();
-            Object.values(chatsListeners).forEach(u => u());
-        }
-    });
-
-    function applyUserToHeader(u) {
-        const d = u || {};
-        const avatar = d.avatar || 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80';
-        document.getElementById('mainAvatar').src = avatar;
-        const mainAvatar = document.getElementById('mainAvatar');
-        if (d.isVIP && d.frameColor) {
-            mainAvatar.style.border = `3px ${d.frameStyle || 'solid'} ${d.frameColor}`;
-        } else {
-            mainAvatar.style.border = 'none';
-        }
-        let nameHtml = d.name || 'Visitante';
-        if (d.isVerified) nameHtml += ' <i class="fas fa-check-circle verified-badge"></i>';
-        if (d.isVIP && d.hasCrown) nameHtml += ` <i class="fas fa-crown" style="color:${d.crownColor||'#ffd700'};"></i>`;
-        if (d.isVIP) nameHtml += ' <span class="vip-badge">VIP</span>';
-        document.getElementById('mainName').innerHTML = nameHtml;
-        document.getElementById('mainStatus').innerHTML = `<i class="fas fa-headphones"></i> ${d.status || 'online'}`;
-        document.getElementById('mainQuote').innerHTML = `<span class="time">Agora:</span> ${d.quote || '...'}`;
-        if (d.appBackground) {
-            document.getElementById('appContainer').style.backgroundImage = `url(${d.appBackground})`;
-        } else {
-            document.getElementById('appContainer').style.backgroundImage = "url('https://images.unsplash.com/photo-1448375240586-882707db888b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')";
-        }
-    }
-
-    function listenToMyProfile() {
-        if (!currentUid) return;
-        if (profileListener) profileListener();
-        profileListener = db.collection('users').doc(currentUid).onSnapshot(doc => {
-            if (doc.exists) { currentUser = doc.data(); applyUserToHeader(currentUser); }
-        });
-    }
-
-    function toggleFullscreen() {
-        const app = document.getElementById('appContainer');
-        if (!document.fullscreenElement) app.requestFullscreen().catch(() => showToast('Tela cheia não suportada'));
-        else document.exitFullscreen();
-    }
-    document.addEventListener('fullscreenchange', () => {
-        const icon = document.getElementById('fullscreenIcon');
-        if (document.fullscreenElement) { icon.classList.remove('fa-expand'); icon.classList.add('fa-compress'); }
-        else { icon.classList.remove('fa-compress'); icon.classList.add('fa-expand'); }
-    });
-
-    // ========== PERFIL PRÓPRIO ==========
-    function openProfileModal() {
-        if (!currentUid) return;
-        document.getElementById('editFirstName').value = currentUser.firstName || '';
-        document.getElementById('editLastName').value = currentUser.lastName || '';
-        document.getElementById('editStatus').value = currentUser.status || '';
-        document.getElementById('editQuote').value = currentUser.quote || '';
-        document.getElementById('profileAvatarPreview').src = currentUser.avatar || 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80';
-        document.getElementById('editPassword').value = '';
-        document.getElementById('editPasswordConfirm').value = '';
-        openModal('profileModal');
-    }
-
-    function handleProfileAvatarUpload(event) {
-        const file = event.target.files[0];
-        if (!file) return;
-        const reader = new FileReader();
-        reader.onload = e => {
-            document.getElementById('profileAvatarPreview').src = e.target.result;
-            window._newAvatarData = e.target.result;
-        };
-        reader.readAsDataURL(file);
-    }
-
-    async function saveProfile() {
-        const firstName = document.getElementById('editFirstName').value.trim();
-        const lastName = document.getElementById('editLastName').value.trim();
-        const status = document.getElementById('editStatus').value.trim();
-        const quote = document.getElementById('editQuote').value.trim();
-        const pass = document.getElementById('editPassword').value.trim();
-        const pass2 = document.getElementById('editPasswordConfirm').value.trim();
-        if (!firstName || !lastName) return showToast('Nome e sobrenome são obrigatórios.');
-        if (pass && pass !== pass2) return showToast('Senhas não conferem.');
-        const fullName = `${firstName} ${lastName}`;
-        const updates = { firstName, lastName, name: fullName, status, quote };
-        if (window._newAvatarData) updates.avatar = window._newAvatarData;
-        if (pass && pass.length >= 6) {
-            try { await auth.currentUser.updatePassword(pass); } catch (e) { showToast('Erro ao alterar senha.'); return; }
-        }
-        await db.collection('users').doc(currentUid).update(updates);
-        window._newAvatarData = null;
-        showToast('Perfil atualizado!');
-        closeModal('profileModal');
-    }
-
-    // ========== PUBLICADOR ==========
-    function toggleEmojiPicker() {
-        const el = document.getElementById('emojiPicker');
-        el.style.display = el.style.display === 'none' ? 'flex' : 'none';
-    }
-    function insertEmoji(e) { document.getElementById('newPostText').value += e; document.getElementById('emojiPicker').style.display = 'none'; }
-    function handlePostImageUpload(event) {
-        const file = event.target.files[0];
-        if (!file) return;
-        const reader = new FileReader();
-        reader.onload = e => { currentMediaData = { type: 'image', url: e.target.result }; showMediaPreview(); };
-        reader.readAsDataURL(file);
-        event.target.value = '';
-    }
-    function handleVideoUrl(url) {
-        if (!url.trim()) return;
-        currentMediaData = { type: 'video', url: url.trim() };
-        showMediaPreview();
-        document.getElementById('videoUrlInput').value = '';
-    }
-    function showMediaPreview() {
-        const preview = document.getElementById('mediaPreview');
-        const content = document.getElementById('mediaContent');
-        if (!currentMediaData) return;
-        preview.style.display = 'block';
-        content.innerHTML = currentMediaData.type === 'image' ? `<img src="${currentMediaData.url}">` : `<video src="${currentMediaData.url}" controls></video>`;
-    }
-    function removeMedia() {
-        currentMediaData = null;
-        document.getElementById('mediaPreview').style.display = 'none';
-        document.getElementById('mediaContent').innerHTML = '';
-    }
-    function focusLocation() { document.getElementById('locationInput').focus(); }
-
-    async function publishPost() {
-        if (!currentUid) return showToast('Faça login.');
-        const text = document.getElementById('newPostText').value.trim();
-        const location = document.getElementById('locationInput').value.trim();
-        if (!text && !currentMediaData) return showToast('Escreva algo ou adicione mídia.');
-        await db.collection('posts').add({
-            userId: currentUid, name: currentUser.name, avatar: currentUser.avatar,
-            quote: text, time: new Date().toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'}),
-            likes:0, likedBy:[], comments:0, shares:0, isYellow:false, isFixed:false,
-            location: location || null, media: currentMediaData?.url || null, mediaType: currentMediaData?.type || null,
-            createdAt: firebase.firestore.FieldValue.serverTimestamp()
-        });
-        document.getElementById('newPostText').value = '';
-        document.getElementById('locationInput').value = '';
-        removeMedia();
-        document.getElementById('emojiPicker').style.display = 'none';
-        closeModal('postModal');
-        showToast('Publicado!');
-    }
-
-    // ========== FEED ==========
-    function setupPostsListener() {
-        if (postsListener) postsListener();
-        postsListener = db.collection('posts').orderBy('createdAt','desc').onSnapshot(snap => {
-            const all = []; snap.forEach(doc => all.push({id: doc.id, ...doc.data()}));
-            renderFeed(all);
-        });
-    }
-
-    function renderFeed(posts) {
-        const wrapper = document.getElementById('cardsWrapper');
-        wrapper.innerHTML = '';
-        let filtered = posts;
-        if (currentFilter === 'text') filtered = posts.filter(p => p.isYellow);
-        else if (currentFilter === 'fixed') filtered = posts.filter(p => p.isFixed);
-        if (filtered.length === 0) {
-            wrapper.innerHTML = '<div style="color:#fff;text-align:center;margin-top:50px;">Nenhum pensamento por aqui.</div>';
-            return;
-        }
-        filtered.forEach(p => {
-            const liked = currentUid && p.likedBy?.includes(currentUid);
-            let mediaHTML = '';
-            if (p.media && p.mediaType === 'image') mediaHTML = `<div style="margin-top:10px;border-radius:12px;overflow:hidden;"><img src="${p.media}" style="width:100%;"></div>`;
-            else if (p.media && p.mediaType === 'video') mediaHTML = `<div style="margin-top:10px;border-radius:12px;overflow:hidden;"><video src="${p.media}" controls style="width:100%;"></video></div>`;
-            let locHTML = p.location ? `<div style="font-size:12px;color:#888;margin-top:5px;"><i class="fas fa-map-marker-alt"></i> ${p.location}</div>` : '';
-            wrapper.innerHTML += `
-                <div class="card ${p.isYellow?'yellow':''}">
-                    <div class="card-top">
-                        <img src="${p.avatar}" class="card-avatar" onerror="this.src='https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=80&q=80'">
-                        <div class="card-content">
-                            <div class="card-name" onclick="openUserProfile('${p.userId}')">${p.name}</div>
-                            <div class="card-quote">${p.quote}</div>
-                            ${mediaHTML}
-                            ${locHTML}
-                        </div>
-                    </div>
-                    <div class="card-footer">
-                        <span class="card-time">${p.time}</span><div class="card-line"></div>
-                        <div class="card-interactions">
-                            <span class="interaction" onclick="toggleLike('${p.id}')"><i class="${liked?'fas':'far'} fa-heart" style="color:${liked?'var(--like-red)':'inherit'}"></i> ${p.likes}</span>
-                            <span class="interaction" onclick="sharePost('${p.id}')"><i class="fas fa-share"></i> ${p.shares}</span>
-                        </div>
-                    </div>
-                </div>`;
-        });
-        buildCarousel(posts);
-    }
-
-    function buildCarousel(posts) {
-        const top = [...posts].sort((a,b) => (b.likes||0)-(a.likes||0)).slice(0,5);
-        const track = document.getElementById('carouselTrack');
-        const inds = document.getElementById('carouselIndicators');
-        track.innerHTML = top.map(p => `
-            <div class="carousel-slide" onclick="showToast('Post de ${p.name}')">
-                <img src="${p.avatar}" onerror="this.src='https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=80&q=80'">
-                <div class="carousel-text"><h4>${p.name}</h4><p>${p.quote?.substring(0,60)||''}</p></div>
-            </div>`).join('');
-        inds.innerHTML = top.map((_,i) => `<span class="carousel-dot ${i===0?'active':''}" onclick="goToCarouselSlide(${i})"></span>`).join('');
-        currentCarouselIndex = 0; updateCarouselPosition(); startCarouselAuto();
-    }
-    function updateCarouselPosition() {
-        document.getElementById('carouselTrack').style.transform = `translateX(-${currentCarouselIndex*100}%)`;
-        document.querySelectorAll('.carousel-dot').forEach((d,i) => d.classList.toggle('active', i===currentCarouselIndex));
-    }
-    function goToCarouselSlide(i) { currentCarouselIndex = i; updateCarouselPosition(); restartCarouselAuto(); }
-    function nextCarouselSlide() {
-        const slides = document.querySelectorAll('.carousel-slide').length;
-        if (slides) currentCarouselIndex = (currentCarouselIndex+1)%slides;
-        updateCarouselPosition();
-    }
-    function startCarouselAuto() { clearInterval(carouselInterval); carouselInterval = setInterval(nextCarouselSlide, 4000); }
-    function restartCarouselAuto() { clearInterval(carouselInterval); startCarouselAuto(); }
-    function filterFeed(type, el) {
-        currentFilter = type;
-        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-        el.classList.add('active');
-        setupPostsListener();
-    }
-
-    async function toggleLike(postId) {
-        if (!currentUid) return;
-        const ref = db.collection('posts').doc(postId);
-        const doc = await ref.get();
-        if (!doc.exists) return;
-        const data = doc.data(); const likedBy = data.likedBy || [];
-        if (likedBy.includes(currentUid)) await ref.update({likes: data.likes-1, likedBy: firebase.firestore.FieldValue.arrayRemove(currentUid)});
-        else await ref.update({likes: data.likes+1, likedBy: firebase.firestore.FieldValue.arrayUnion(currentUid)});
-    }
-    async function sharePost(postId) {
-        await db.collection('posts').doc(postId).update({shares: firebase.firestore.FieldValue.increment(1)});
-        showToast('Link copiado!');
-    }
-
-    // ========== PERFIL DE OUTRO ==========
-    async function openUserProfile(uid) {
-        if (uid === currentUid) return openProfileModal();
-        viewedUid = uid;
-        const doc = await db.collection('users').doc(uid).get();
-        if (!doc.exists) return showToast('Usuário não encontrado.');
-        const u = doc.data();
-        document.getElementById('viewAvatar').src = u.avatar;
-        document.getElementById('viewName').innerHTML = (u.isVerified ? '<i class="fas fa-check-circle verified-badge"></i> ' : '') + u.name;
-        document.getElementById('viewStatus').textContent = u.status || '';
-        document.getElementById('viewQuote').textContent = u.quote || '';
-        const btn = document.getElementById('friendActionBtn');
-        const friends = currentUser.friends || [];
-        if (friends.includes(uid)) { btn.textContent = '✓ Amigos'; btn.disabled = true; }
-        else {
-            const pend = await db.collection('friendRequests').where('from','==',currentUid).where('to','==',uid).where('status','==','pending').get();
-            if (!pend.empty) { btn.textContent = 'Solicitação enviada'; btn.disabled = true; }
-            else { btn.textContent = 'Adicionar como amigo'; btn.disabled = false; }
-        }
-        openModal('userProfileModal');
-    }
-
-    async function toggleFriendship() {
-        if (!viewedUid) return;
-        await db.collection('friendRequests').add({
-            from: currentUid, to: viewedUid, status: 'pending',
-            createdAt: firebase.firestore.FieldValue.serverTimestamp()
-        });
-        document.getElementById('friendActionBtn').textContent = 'Solicitação enviada';
-        document.getElementById('friendActionBtn').disabled = true;
-        showToast('Solicitação enviada!');
-    }
-
-    function openFriendRequestsModal() { openModal('friendRequestsModal'); renderFriendRequests(); }
-    async function renderFriendRequests() {
-        const list = document.getElementById('friendRequestsList');
-        list.innerHTML = 'Carregando...';
-        const snap = await db.collection('friendRequests').where('to','==',currentUid).where('status','==','pending').get();
-        const reqs = []; snap.forEach(doc => reqs.push({id: doc.id, ...doc.data()}));
-        if (reqs.length === 0) list.innerHTML = '<p style="text-align:center;">Nenhuma solicitação.</p>';
-        else list.innerHTML = reqs.map(r => `
-            <div style="display:flex;align-items:center;justify-content:space-between;padding:15px;background:#fff;border-radius:12px;margin-bottom:10px;">
-                <span><b>${r.from}</b></span>
-                <div>
-                    <button onclick="respondFriendRequest('${r.id}','accepted')" style="background:green;color:#fff;border:none;padding:8px;border-radius:8px;">Aceitar</button>
-                    <button onclick="respondFriendRequest('${r.id}','rejected')" style="background:red;color:#fff;border:none;padding:8px;border-radius:8px;margin-left:5px;">Recusar</button>
-                </div>
-            </div>`).join('');
-    }
-    async function respondFriendRequest(reqId, status) {
-        const req = await db.collection('friendRequests').doc(reqId).get();
-        const d = req.data();
-        if (status === 'accepted') {
-            await db.collection('users').doc(d.from).update({friends: firebase.firestore.FieldValue.arrayUnion(d.to)});
-            await db.collection('users').doc(d.to).update({friends: firebase.firestore.FieldValue.arrayUnion(d.from)});
-        }
-        await db.collection('friendRequests').doc(reqId).update({status});
-        currentUser = (await db.collection('users').doc(currentUid).get()).data();
-        applyUserToHeader(currentUser);
-        renderFriendRequests();
-        updateBadges();
-        showToast(status === 'accepted' ? 'Amigo adicionado!' : 'Solicitação recusada.');
-    }
-
-    function updateBadges() {
-        db.collection('friendRequests').where('to','==',currentUid).where('status','==','pending').onSnapshot(snap => {
-            const count = snap.size;
-            const badge = document.getElementById('friendRequestBadge');
-            if (count > 0) { badge.textContent = count; badge.classList.add('show'); }
-            else badge.classList.remove('show');
-            document.getElementById('menuRequestCount').textContent = count ? `(${count})` : '';
-        });
-    }
-
-    // ========== CONTATOS ==========
-    function openContactsModal() {
-        if (!currentUid) return;
-        const list = document.getElementById('contactsList');
-        list.innerHTML = 'Carregando...';
-        openModal('contactsModal');
-        const friends = currentUser.friends || [];
-        if (!friends.length) { list.innerHTML = '<p style="text-align:center;">Sem amigos ainda.</p>'; return; }
-        Promise.all(friends.map(async uid => {
-            const u = (await db.collection('users').doc(uid).get()).data();
-            const chatId = [currentUid, uid].sort().join('_');
-            const last = await db.collection('chats').doc(chatId).collection('messages').orderBy('createdAt','desc').limit(1).get();
-            let lastMsg = 'Nenhuma conversa';
-            if (!last.empty) lastMsg = last.docs[0].data().text.substring(0,30);
-            return {uid, name: u.name, avatar: u.avatar, lastMsg};
-        })).then(contacts => {
-            list.innerHTML = contacts.map(c => `
-                <div class="contact-item" onclick="openChat('${c.uid}')">
-                    <img src="${c.avatar}" class="contact-avatar">
-                    <div style="flex:1;"><div style="font-weight:500;">${c.name}</div><div style="font-size:13px;color:#888;">${c.lastMsg}</div></div>
-                </div>`).join('');
-        });
-    }
-
-    // ========== CHAT ==========
-    function getChatId(otherUid) { return [currentUid, otherUid].sort().join('_'); }
-    function openChat(uid) {
-        if (!currentUid || !currentUser.friends.includes(uid)) return showToast('Adicione como amigo primeiro.');
-        document.getElementById('chatUserName').textContent = 'Carregando...';
-        db.collection('users').doc(uid).get().then(doc => {
-            if (doc.exists) document.getElementById('chatUserName').textContent = doc.data().name;
-        });
-        document.getElementById('chatModal').dataset.otherUserId = uid;
-        const chatId = getChatId(uid);
-        const area = document.getElementById('chatArea');
-        if (chatsListeners[chatId]) chatsListeners[chatId]();
-        chatsListeners[chatId] = db.collection('chats').doc(chatId).collection('messages').orderBy('createdAt','asc').onSnapshot(snap => {
-            area.innerHTML = '';
-            snap.forEach(doc => {
-                const msg = doc.data();
-                const isMine = msg.senderId === currentUid;
-                const time = msg.createdAt ? new Date(msg.createdAt.toDate()).toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'}) : '';
-                area.innerHTML += `<div class="msg-bubble ${isMine?'msg-sent':'msg-received'}">${isMine?`<button class="msg-delete" onclick="deleteMessage('${chatId}','${doc.id}')">✕</button>`:''}<div>${msg.text}</div><div style="font-size:10px;color:#888;text-align:right;">${time}</div></div>`;
-            });
-            area.scrollTop = area.scrollHeight;
-            db.collection('users').doc(currentUid).update({[`lastRead.${chatId}`]: firebase.firestore.FieldValue.serverTimestamp()});
-        });
-        if (currentUser.chatBackground) {
-            document.getElementById('chatModal').querySelector('.chat-area').style.backgroundImage = `url(${currentUser.chatBackground})`;
-            document.getElementById('chatModal').querySelector('.chat-area').style.backgroundSize = 'cover';
-        } else {
-            document.getElementById('chatModal').querySelector('.chat-area').style.backgroundImage = '';
-        }
-        openModal('chatModal');
-    }
-
-    async function sendChatMsg() {
-        const other = document.getElementById('chatModal').dataset.otherUserId;
-        const text = document.getElementById('chatMsgInput').value.trim();
-        if (!text || !other) return;
-        await db.collection('chats').doc(getChatId(other)).collection('messages').add({
-            text, senderId: currentUid, senderName: currentUser.name,
-            createdAt: firebase.firestore.FieldValue.serverTimestamp()
-        });
-        document.getElementById('chatMsgInput').value = '';
-    }
-
-    async function deleteMessage(chatId, msgId) {
-        if (!confirm('Excluir mensagem?')) return;
-        await db.collection('chats').doc(chatId).collection('messages').doc(msgId).delete();
-    }
-
-    async function clearChatHistory() {
-        const other = document.getElementById('chatModal').dataset.otherUserId;
-        if (!other || !confirm('Apagar todo o histórico?')) return;
-        const batch = db.batch();
-        const snap = await db.collection('chats').doc(getChatId(other)).collection('messages').get();
-        snap.forEach(doc => batch.delete(doc.ref));
-        await batch.commit();
-        showToast('Histórico limpo.');
-    }
-
-    // ========== EXPLORAR ==========
-    async function openExploreModal() {
-        openModal('exploreModal');
-        const list = document.getElementById('exploreList');
-        list.innerHTML = 'Carregando...';
-        const snap = await db.collection('users').get();
-        const users = []; snap.forEach(doc => { if (doc.id !== currentUid) users.push({id: doc.id, ...doc.data()}); });
-        list.innerHTML = users.map(u => `
-            <div class="contact-item" onclick="openUserProfile('${u.id}')">
-                <img src="${u.avatar}" class="contact-avatar">
-                <div style="flex:1;"><div style="font-weight:500;">${u.name}</div><div style="font-size:13px;color:#888;">${u.status||''}</div></div>
-            </div>`).join('');
-    }
-
-    function openMenuModal() { openModal('menuModal'); updateBadges(); }
-
-    // ========== PAINEL ADMIN ==========
-    function switchAdminTab(tab) {
-        document.querySelectorAll('.admin-tab').forEach(b => b.classList.remove('active'));
-        const tabs = ['users','posts','chats','turbinate'];
-        document.querySelectorAll('.admin-tab')[tabs.indexOf(tab)].classList.add('active');
-        const area = document.getElementById('adminContent');
-        if (tab === 'users') loadAdminUsers(area);
-        else if (tab === 'posts') loadAdminPosts(area);
-        else if (tab === 'chats') loadAdminChats(area);
-        else if (tab === 'turbinate') loadAdminTurbinate(area);
-    }
-
-    async function loadAdminUsers(area) {
-        const users = await db.collection('users').get();
-        area.innerHTML = '<h3>Todos os Usuários</h3>';
-        users.forEach(doc => {
-            const u = doc.data();
-            area.innerHTML += `
-                <div style="display:flex;justify-content:space-between;align-items:center;padding:10px;border-bottom:1px solid #ccc;">
-                    <span>${u.name} ${u.isVIP?'<span class="vip-badge">VIP</span>':''} ${u.isVerified?'<i class="fas fa-check-circle verified-badge"></i>':''}</span>
-                    <div>
-                        <button onclick="toggleVIP('${doc.id}',${!u.isVIP})">${u.isVIP?'-VIP':'+VIP'}</button>
-                        <button onclick="toggleVerified('${doc.id}',${!u.isVerified})">${u.isVerified?'-Verif':'+Verif'}</button>
-                        <button onclick="editUser('${doc.id}')">Editar</button>
-                        <button onclick="deleteUserComplete('${doc.id}')">Excluir</button>
-                    </div>
-                </div>`;
-        });
-    }
-    async function toggleVIP(uid, val) {
-        await db.collection('users').doc(uid).update({ isVIP: val, hasCrown: val });
-        showToast(val ? 'VIP ativado!' : 'VIP removido.');
-        switchAdminTab('users');
-    }
-    async function toggleVerified(uid, val) {
-        await db.collection('users').doc(uid).update({ isVerified: val });
-        showToast(val ? 'Verificado!' : 'Selo removido.');
-        switchAdminTab('users');
-    }
-    async function editUser(uid) {
-        const doc = await db.collection('users').doc(uid).get();
-        const u = doc.data();
-        const avatar = prompt('Avatar URL:', u.avatar);
-        const status = prompt('Status:', u.status);
-        const quote = prompt('Frase:', u.quote);
-        if (avatar !== null && status !== null && quote !== null) {
-            await db.collection('users').doc(uid).update({avatar, status, quote});
-            showToast('Usuário atualizado.');
-            switchAdminTab('users');
-        }
-    }
-    async function deleteUserComplete(uid) {
-        if (!confirm(`Excluir ${uid}?`)) return;
-        const posts = await db.collection('posts').where('userId','==',uid).get();
-        const batch = db.batch();
-        posts.forEach(doc => batch.delete(doc.ref));
-        batch.delete(db.collection('users').doc(uid));
-        await batch.commit();
-        showToast('Usuário excluído.');
-        switchAdminTab('users');
-    }
-
-    async function loadAdminPosts(area) {
-        const posts = await db.collection('posts').orderBy('createdAt','desc').get();
-        area.innerHTML = '<h3>Posts</h3>';
-        posts.forEach(doc => {
-            const p = doc.data();
-            area.innerHTML += `<div style="display:flex;justify-content:space-between;padding:10px;border-bottom:1px solid #ccc;"><span><b>${p.name}</b>: ${p.quote?.substring(0,40)}</span><button onclick="deletePost('${doc.id}')">Excluir</button></div>`;
-        });
-    }
-    async function deletePost(postId) {
-        if (confirm('Excluir post?')) { await db.collection('posts').doc(postId).delete(); showToast('Post excluído.'); switchAdminTab('posts'); }
-    }
-
-    async function loadAdminChats(area) {
-        const chats = await db.collection('chats').get();
-        area.innerHTML = '<h3>Chats</h3>';
-        chats.forEach(chat => {
-            area.innerHTML += `<div style="display:flex;justify-content:space-between;padding:10px;border-bottom:1px solid #ccc;"><span>Chat: ${chat.id.replace(/_/g,' e ')}</span><button onclick="clearChatAdmin('${chat.id}')">Limpar</button></div>`;
-        });
-    }
-    async function clearChatAdmin(chatId) {
-        if (confirm('Limpar chat?')) {
-            const snap = await db.collection('chats').doc(chatId).collection('messages').get();
-            const batch = db.batch(); snap.forEach(doc => batch.delete(doc.ref));
-            await batch.commit(); showToast('Chat limpo.'); switchAdminTab('chats');
-        }
-    }
-
-    function loadAdminTurbinate(area) {
-        area.innerHTML = `
-            <h3>Turbinar Conta</h3>
-            <label>Avatar (URL ou upload): <input type="file" id="turbAvatarFile" accept="image/*" onchange="handleAdminAvatarUpload(event)"></label>
-            <input id="turbAvatar" value="${currentUser.avatar||''}" style="width:100%;margin-bottom:10px;">
-            <label>Coroa: <select id="turbHasCrown"><option value="true" ${currentUser.hasCrown?'selected':''}>Sim</option><option value="false">Não</option></select></label>
-            <label>Cor da Coroa: <input type="color" id="turbCrownColor" value="${currentUser.crownColor||'#ffd700'}"></label>
-            <label>Moldura: <input type="color" id="turbFrameColor" value="${currentUser.frameColor||'#ffd700'}"></label>
-            <label>Estilo: <select id="turbFrameStyle"><option value="solid">Sólida</option><option value="dashed">Tracejada</option><option value="dotted">Pontilhada</option><option value="double">Dupla</option></select></label>
-            <label>VIP: <select id="turbIsVIP"><option value="true" ${currentUser.isVIP?'selected':''}>Sim</option><option value="false">Não</option></select></label>
-            <label>Fundo do Chat: <input type="file" id="turbChatBgFile" accept="image/*" onchange="handleChatBgUpload(event)"></label>
-            <label>Fundo do App: <input type="file" id="turbAppBgFile" accept="image/*" onchange="handleAppBgUpload(event)"></label>
-            <button class="btn-primary" onclick="saveTurbinate()">💾 Salvar</button>
-        `;
-    }
-
-    function handleAdminAvatarUpload(event) {
-        const file = event.target.files[0];
-        if (!file) return;
-        const reader = new FileReader();
-        reader.onload = e => document.getElementById('turbAvatar').value = e.target.result;
-        reader.readAsDataURL(file);
-    }
-    function handleChatBgUpload(event) {
-        const file = event.target.files[0];
-        if (!file) return;
-        const reader = new FileReader();
-        reader.onload = e => window._chatBgData = e.target.result;
-        reader.readAsDataURL(file);
-    }
-    function handleAppBgUpload(event) {
-        const file = event.target.files[0];
-        if (!file) return;
-        const reader = new FileReader();
-        reader.onload = e => window._appBgData = e.target.result;
-        reader.readAsDataURL(file);
-    }
-
-    async function saveTurbinate() {
-        const data = {
-            avatar: document.getElementById('turbAvatar').value.trim(),
-            hasCrown: document.getElementById('turbHasCrown').value === 'true',
-            crownColor: document.getElementById('turbCrownColor').value,
-            frameColor: document.getElementById('turbFrameColor').value,
-            frameStyle: document.getElementById('turbFrameStyle').value,
-            isVIP: document.getElementById('turbIsVIP').value === 'true'
-        };
-        if (window._chatBgData) data.chatBackground = window._chatBgData;
-        if (window._appBgData) data.appBackground = window._appBgData;
-        await db.collection('users').doc(currentUid).update(data);
-        window._chatBgData = null; window._appBgData = null;
-        showToast('Turbinado!');
-        switchAdminTab('turbinate');
-    }
-
-    function initApp() {
-        listenToMyProfile();
-        setupPostsListener();
-        updateBadges();
-    }
-
-    // Exposição global
-    window.switchLoginTab = switchLoginTab;
-    window.registerEmail = registerEmail;
-    window.loginEmail = loginEmail;
-    window.logoutUser = logoutUser;
-    window.toggleFullscreen = toggleFullscreen;
-    window.openModal = openModal;
-    window.closeModal = closeModal;
-    window.showToast = showToast;
-    window.filterFeed = filterFeed;
-    window.publishPost = publishPost;
-    window.toggleEmojiPicker = toggleEmojiPicker;
-    window.insertEmoji = insertEmoji;
-    window.handlePostImageUpload = handlePostImageUpload;
-    window.handleVideoUrl = handleVideoUrl;
-    window.removeMedia = removeMedia;
-    window.focusLocation = focusLocation;
-    window.toggleLike = toggleLike;
-    window.sharePost = sharePost;
-    window.openUserProfile = openUserProfile;
-    window.openProfileModal = openProfileModal;
-    window.handleProfileAvatarUpload = handleProfileAvatarUpload;
-    window.saveProfile = saveProfile;
-    window.openChat = openChat;
-    window.sendChatMsg = sendChatMsg;
-    window.deleteMessage = deleteMessage;
-    window.clearChatHistory = clearChatHistory;
-    window.openContactsModal = openContactsModal;
-    window.openMenuModal = openMenuModal;
-    window.openExploreModal = openExploreModal;
-    window.toggleFriendship = toggleFriendship;
-    window.openFriendRequestsModal = openFriendRequestsModal;
-    window.respondFriendRequest = respondFriendRequest;
-    window.switchAdminTab = switchAdminTab;
-    window.toggleVIP = toggleVIP;
-    window.toggleVerified = toggleVerified;
-    window.editUser = editUser;
-    window.deleteUserComplete = deleteUserComplete;
-    window.deletePost = deletePost;
-    window.clearChatAdmin = clearChatAdmin;
-    window.saveTurbinate = saveTurbinate;
-    window.handleAdminAvatarUpload = handleAdminAvatarUpload;
-    window.handleChatBgUpload = handleChatBgUpload;
-    window.handleAppBgUpload = handleAppBgUpload;
-    window.goToCarouselSlide = goToCarouselSlide;
-</script>
+<!-- Script principal -->
+<script src="script.js"></script>
 </body>
 </html>
