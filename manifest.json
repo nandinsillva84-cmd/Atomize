@@ -1,0 +1,20 @@
+{
+  "name": "Atomize",
+  "short_name": "Atomize",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#8b1031",
+  "theme_color": "#8b1031",
+  "icons": [
+    {
+      "src": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=192&q=80",
+      "sizes": "192x192",
+      "type": "image/jpeg"
+    },
+    {
+      "src": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=512&q=80",
+      "sizes": "512x512",
+      "type": "image/jpeg"
+    }
+  ]
+}
