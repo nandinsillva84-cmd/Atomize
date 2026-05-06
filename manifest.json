@@ -1,0 +1,16 @@
+{
+  "name": "YOU",
+  "short_name": "YOU",
+  "description": "Rede de Pensamentos",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#8b1031",
+  "theme_color": "#8b1031",
+  "icons": [
+    {
+      "src": "imageminicio.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
