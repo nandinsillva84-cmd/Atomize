@@ -1,16 +1,115 @@
 {
-  "name": "YOU",
+  "name": "YOU - Rede de Pensamentos",
   "short_name": "YOU",
-  "description": "Rede de Pensamentos",
+  "description": "Compartilhe pensamentos, músicas e momentos com amigos. Uma rede social leve e criativa.",
   "start_url": "index.html",
   "display": "standalone",
-  "background_color": "#8b1031",
+  "background_color": "#121212",
   "theme_color": "#8b1031",
+  "orientation": "portrait",
+  "scope": "/",
+  "lang": "pt-BR",
+  "dir": "ltr",
+  "categories": ["social", "lifestyle"],
+  "iarc_rating_id": "0",
+  "prefer_related_applications": false,
   "icons": [
     {
       "src": "imageminicio.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icone-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icone-144.png",
+      "sizes": "144x144",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icone-48.png",
+      "sizes": "48x48",
+      "type": "image/png",
+      "purpose": "any maskable"
     }
-  ]
+  ],
+  "screenshots": [
+    {
+      "src": "screenshot1.png",
+      "sizes": "1080x1920",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Tela de login do YOU"
+    },
+    {
+      "src": "screenshot2.png",
+      "sizes": "1080x1920",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Feed Now com pensamentos"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Novo Pensamento",
+      "short_name": "Publicar",
+      "description": "Crie um novo pensamento",
+      "url": "index.html?action=post",
+      "icons": [{ "src": "icone-post.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "Meu Perfil",
+      "short_name": "Perfil",
+      "url": "index.html?action=profile",
+      "icons": [{ "src": "icone-perfil.png", "sizes": "96x96" }]
+    }
+  ],
+  "related_applications": [],
+  "share_target": {
+    "action": "index.html?share=1",
+    "method": "POST",
+    "enctype": "multipart/form-data",
+    "params": {
+      "title": "title",
+      "text": "text",
+      "url": "url",
+      "files": [
+        {
+          "name": "media",
+          "accept": ["image/*", "video/*"]
+        }
+      ]
+    }
+  },
+  "protocol_handlers": [
+    {
+      "protocol": "web+you",
+      "url": "index.html?protocol=%s"
+    }
+  ],
+  "display_override": ["standalone", "minimal-ui"],
+  "launch_handler": {
+    "client_mode": "auto"
+  },
+  "edge_side_panel": {},
+  "window_controls_overlay": true,
+  "file_handlers": [
+    {
+      "action": "index.html?open=1",
+      "accept": {
+        "text/plain": [".txt", ".md"],
+        "image/png": [".png"],
+        "image/jpeg": [".jpg", ".jpeg"]
+      }
+    }
+  ],
+  "note_taking": {
+    "new_note_url": "index.html?note=new"
+  }
 }
