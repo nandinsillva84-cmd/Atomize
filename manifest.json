@@ -1,9 +1,9 @@
 {
-  "id": "com.torrao.athom",
-  "name": "ATHOM - Rede de Pensamentos",
-  "short_name": "ATHOM",
+  "id": "com.torrao.you",
+  "name": "YOU - Rede de Pensamentos",
+  "short_name": "YOU",
   "description": "Compartilhe pensamentos, músicas e momentos com amigos.",
-  "start_url": "/",
+  "start_url": "index.html",
   "display": "standalone",
   "background_color": "#121212",
   "theme_color": "#8b1031",
@@ -16,38 +16,16 @@
   "iarc_rating_id": "0",
   "icons": [
     {
-      "src": "/assets/images/icon-192.png",
-      "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any"
-    },
-    {
-      "src": "/assets/images/icon-512.png",
+      "src": "imageminicio.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "/assets/images/icon-512-maskable.png",
+      "src": "imageminicio.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable"
-    }
-  ],
-  "screenshots": [
-    {
-      "src": "screenshot1.png",
-      "sizes": "1080x1920",
-      "type": "image/png",
-      "form_factor": "narrow",
-      "label": "Tela de login do ATHOM"
-    },
-    {
-      "src": "screenshot2.png",
-      "sizes": "1080x1920",
-      "type": "image/png",
-      "form_factor": "narrow",
-      "label": "Feed Now com pensamentos"
     }
   ],
   "shortcuts": [
@@ -55,28 +33,17 @@
       "name": "Novo Pensamento",
       "short_name": "Publicar",
       "description": "Crie um novo pensamento",
-      "url": "/?action=post",
-      "icons": [
-        { "src": "/assets/images/icone-post.png", "sizes": "96x96" }
-      ]
-    },
-    {
-      "name": "Meu Perfil",
-      "short_name": "Perfil",
-      "url": "/?action=profile",
-      "icons": [
-        { "src": "/assets/images/icone-perfil.png", "sizes": "96x96" }
-      ]
+      "url": "index.html?action=post"
     },
     {
       "name": "Conversas (Textz)",
       "short_name": "Textz",
       "description": "Abrir o chat",
-      "url": "/?tab=textz"
+      "url": "index.html?tab=textz"
     }
   ],
   "share_target": {
-    "action": "/?share=1",
+    "action": "index.html?share=1",
     "method": "POST",
     "enctype": "multipart/form-data",
     "params": {
@@ -91,21 +58,12 @@
       ]
     }
   },
-  "protocol_handlers": [
-    {
-      "protocol": "web+you",
-      "url": "/?protocol=%s"
-    }
-  ],
   "display_override": ["standalone", "minimal-ui"],
   "launch_handler": {
     "client_mode": "auto"
   },
-  "edge_side_panel": {},
-  "window_controls_overlay": true,
-  "file_handlers": [
-    {
-      "action": "/?open=1",
+  "related_applications": []
+}      "action": "/?open=1",
       "accept": {
         "text/plain": [".txt", ".md"],
         "image/png": [".png"],
