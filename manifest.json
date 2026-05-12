@@ -13,7 +13,6 @@
   "scope": "/",
   "prefer_related_applications": false,
   "categories": ["social", "lifestyle"],
-  "iarc_rating_id": "0",
   "icons": [
     {
       "src": "imageminicio.png",
@@ -32,54 +31,13 @@
     {
       "name": "Novo Pensamento",
       "short_name": "Publicar",
-      "description": "Crie um novo pensamento",
       "url": "index.html?action=post"
     },
     {
-      "name": "Conversas (Textz)",
+      "name": "Conversas",
       "short_name": "Textz",
-      "description": "Abrir o chat",
       "url": "index.html?tab=textz"
     }
   ],
-  "share_target": {
-    "action": "index.html?share=1",
-    "method": "POST",
-    "enctype": "multipart/form-data",
-    "params": {
-      "title": "title",
-      "text": "text",
-      "url": "url",
-      "files": [
-        {
-          "name": "media",
-          "accept": ["image/*", "video/*"]
-        }
-      ]
-    }
-  },
-  "display_override": ["standalone", "minimal-ui"],
-  "launch_handler": {
-    "client_mode": "auto"
-  },
-  "related_applications": []
-}      "action": "/?open=1",
-      "accept": {
-        "text/plain": [".txt", ".md"],
-        "image/png": [".png"],
-        "image/jpeg": [".jpg", ".jpeg"]
-      }
-    }
-  ],
-  "note_taking": {
-    "new_note_url": "/?note=new"
-  },
-  "related_applications": []
-}        "image/jpeg": [".jpg", ".jpeg"]
-      }
-    }
-  ],
-  "note_taking": {
-    "new_note_url": "index.html?note=new"
-  }
+  "display_override": ["standalone", "minimal-ui"]
 }
