@@ -1,42 +1,37 @@
 {
-  "name": "YOU - Rede de Pensamentos",
-  "short_name": "YOU",
-  "description": "Compartilhe pensamentos, músicas e momentos com amigos. Uma rede social leve e criativa.",
-  "start_url": "index.html",
+  "id": "com.torrao.athom",
+  "name": "ATHOM - Rede de Pensamentos",
+  "short_name": "ATHOM",
+  "description": "Compartilhe pensamentos, músicas e momentos com amigos.",
+  "start_url": "/",
   "display": "standalone",
   "background_color": "#121212",
   "theme_color": "#8b1031",
   "orientation": "portrait",
-  "scope": "/",
   "lang": "pt-BR",
   "dir": "ltr",
+  "scope": "/",
+  "prefer_related_applications": false,
   "categories": ["social", "lifestyle"],
   "iarc_rating_id": "0",
-  "prefer_related_applications": false,
   "icons": [
     {
-      "src": "imageminicio.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "icone-192.png",
+      "src": "/assets/images/icon-192.png",
       "sizes": "192x192",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
     },
     {
-      "src": "icone-144.png",
-      "sizes": "144x144",
+      "src": "/assets/images/icon-512.png",
+      "sizes": "512x512",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
     },
     {
-      "src": "icone-48.png",
-      "sizes": "48x48",
+      "src": "/assets/images/icon-512-maskable.png",
+      "sizes": "512x512",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "maskable"
     }
   ],
   "screenshots": [
@@ -45,7 +40,7 @@
       "sizes": "1080x1920",
       "type": "image/png",
       "form_factor": "narrow",
-      "label": "Tela de login do YOU"
+      "label": "Tela de login do ATHOM"
     },
     {
       "src": "screenshot2.png",
@@ -60,19 +55,28 @@
       "name": "Novo Pensamento",
       "short_name": "Publicar",
       "description": "Crie um novo pensamento",
-      "url": "index.html?action=post",
-      "icons": [{ "src": "icone-post.png", "sizes": "96x96" }]
+      "url": "/?action=post",
+      "icons": [
+        { "src": "/assets/images/icone-post.png", "sizes": "96x96" }
+      ]
     },
     {
       "name": "Meu Perfil",
       "short_name": "Perfil",
-      "url": "index.html?action=profile",
-      "icons": [{ "src": "icone-perfil.png", "sizes": "96x96" }]
+      "url": "/?action=profile",
+      "icons": [
+        { "src": "/assets/images/icone-perfil.png", "sizes": "96x96" }
+      ]
+    },
+    {
+      "name": "Conversas (Textz)",
+      "short_name": "Textz",
+      "description": "Abrir o chat",
+      "url": "/?tab=textz"
     }
   ],
-  "related_applications": [],
   "share_target": {
-    "action": "index.html?share=1",
+    "action": "/?share=1",
     "method": "POST",
     "enctype": "multipart/form-data",
     "params": {
@@ -90,7 +94,7 @@
   "protocol_handlers": [
     {
       "protocol": "web+you",
-      "url": "index.html?protocol=%s"
+      "url": "/?protocol=%s"
     }
   ],
   "display_override": ["standalone", "minimal-ui"],
@@ -101,11 +105,19 @@
   "window_controls_overlay": true,
   "file_handlers": [
     {
-      "action": "index.html?open=1",
+      "action": "/?open=1",
       "accept": {
         "text/plain": [".txt", ".md"],
         "image/png": [".png"],
         "image/jpeg": [".jpg", ".jpeg"]
+      }
+    }
+  ],
+  "note_taking": {
+    "new_note_url": "/?note=new"
+  },
+  "related_applications": []
+}        "image/jpeg": [".jpg", ".jpeg"]
       }
     }
   ],
